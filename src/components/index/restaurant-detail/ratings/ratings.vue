@@ -1,7 +1,8 @@
 <!-- 商家模块 评价页面 -->
 
 <template>
-  <div class="ratings" ref="ratingsRef">
+  <div class="ratings"
+    ref="ratingsRef">
     <div class="ratings-content">
       <!-- 概览 -->
       <div class="overview">
@@ -14,12 +15,14 @@
         <div class="right">
           <div class="service">
             <span class="title">服务态度</span>
-            <star :size="36" :score="seller.serviceScore"></star>
+            <star :size="36"
+              :score="seller.serviceScore"></star>
             <span class="score">{{seller.serviceScore}}</span>
           </div>
           <div class="goods">
             <span class="title">商品评分</span>
-            <star :size="36" :score="seller.foodScore"></star>
+            <star :size="36"
+              :score="seller.foodScore"></star>
             <span class="score">{{seller.foodScore}}</span>
           </div>
           <div class="delivery">
@@ -33,15 +36,17 @@
       <cross-line></cross-line>
 
       <ratings-select :ratings="ratings"
-                      :desc="desc"
-                      :selectType="selectType"
-                      :onlyContent="onlyContent"
-                      @select="select"
-                      @switchContent="switchContent"></ratings-select>
+        :desc="desc"
+        :selectType="selectType"
+        :onlyContent="onlyContent"
+        @select="select"
+        @switchContent="switchContent"></ratings-select>
 
       <div class="rating-wrapper">
         <ul>
-          <li class="rating-item" v-for="rating in ratings" v-show="needShow(rating.rateType, rating.text)">
+          <li class="rating-item"
+            v-for="rating in ratings"
+            v-show="needShow(rating.rateType, rating.text)">
             <div class="avatar">
               <img :src="rating.avatar">
             </div>
@@ -50,15 +55,19 @@
               <h1 class="name">{{rating.username}}</h1>
 
               <div class="star-wrapper">
-                <star :size="24" :score="rating.score"></star>
-                <span class="delivery" v-show="rating.deliveryTime">{{rating.deliveryTime}}</span>
+                <star :size="24"
+                  :score="rating.score"></star>
+                <span class="delivery"
+                  v-show="rating.deliveryTime">{{rating.deliveryTime}}</span>
               </div>
 
               <p class="text">{{rating.text}}</p>
 
-              <div class="recommend" v-show="rating.recommend && rating.recommend.length">
+              <div class="recommend"
+                v-show="rating.recommend && rating.recommend.length">
                 <i class="icon-thumb_up"></i>
-                <span class="item" v-for="item in rating.recommend">{{item}}</span>
+                <span class="item"
+                  v-for="item in rating.recommend">{{item}}</span>
               </div>
 
               <div class="time">
@@ -69,7 +78,8 @@
         </ul>
 
         <!-- 无评价时的样式 -->
-        <div class="no-rating" v-show="!ratings || !ratings.length">暂无评价</div>
+        <div class="no-rating"
+          v-show="!ratings || !ratings.length">暂无评价</div>
       </div>
     </div>
   </div>
@@ -91,7 +101,7 @@ export default {
     RatingsSelect,
     CrossLine
   },
-  data () {
+  data() {
     return {
       // 评价数据
       ratings: [],
@@ -115,7 +125,7 @@ export default {
   watch: {},
   methods: {
     // 初始化数据
-    _initData () {
+    _initData() {
       axios.get('/api/ratings').then(res => {
         if (res.data.code === 0) {
           this.ratings = res.data.data
@@ -131,20 +141,20 @@ export default {
       })
     },
     // 组件间通讯 ratings-select
-    select (type) {
+    select(type) {
       this.selectType = type
       this.$nextTick(() => {
         this.scroll.refresh()
       })
     },
-    switchContent () {
+    switchContent() {
       this.onlyContent = !this.onlyContent
       this.$nextTick(() => {
         this.scroll.refresh()
       })
     },
     // 只显示有内容的评价
-    needShow (type, text) {
+    needShow(type, text) {
       if (this.onlyContent && !text) {
         return false
       }
@@ -159,22 +169,22 @@ export default {
   filters: {
     // moment.js: 格式化时间戳
     // 1469261964000 -> 2016-07-23, 04:19:24
-    moment (time) {
+    moment(time) {
       return moment(time).format('YYYY-MM-DD, hh:mm')
     }
   },
   computed: {},
-  created () {
+  created() {
     // 初始化数据
     this._initData()
   },
-  mounted () {}
+  mounted() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .ratings {
   position: absolute;
@@ -215,7 +225,8 @@ export default {
       .right {
         flex: 1;
         padding: 6px 0 6px 24px;
-        .service, .goods {
+        .service,
+        .goods {
           margin-bottom: 8px;
           line-height: 18px;
           font-size: 0;
@@ -319,7 +330,7 @@ export default {
               font-size: 10px;
               border: 1px solid rgba(7, 17, 27, 0.1);
               border-radius: 5px;
-              color: rgb(147, 153,159);
+              color: rgb(147, 153, 159);
               background-color: #fff;
             }
           }

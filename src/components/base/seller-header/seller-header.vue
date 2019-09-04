@@ -1,7 +1,8 @@
 <!-- 商家模块头部 组件 -->
 
 <template>
-  <div class="seller-header" v-if="seller">
+  <div class="seller-header"
+    v-if="seller">
     <!-- 主要内容：左侧头像、右侧描述 -->
     <div class="content-wrapper">
       <div class="avatar">
@@ -19,21 +20,26 @@
         </div>
 
         <!-- 活动 -->
-        <div class="supports" v-if="seller.supports">
-          <span class="icon" :class="classMap[seller.supports[0].type]"></span>
+        <div class="supports"
+          v-if="seller.supports">
+          <span class="icon"
+            :class="classMap[seller.supports[0].type]"></span>
           <span class="text">{{ seller.supports[0].description }}</span>
         </div>
       </div>
 
       <!-- 活动个数 -->
-      <div class="supports-count" v-if="seller.supports" @click="detailShow = true">
+      <div class="supports-count"
+        v-if="seller.supports"
+        @click="detailShow = true">
         <span>{{ seller.supports.length }}个活动</span>
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
 
     <!-- 公告 -->
-    <div class="bulletin-wrapper" @click="detailShow = true">
+    <div class="bulletin-wrapper"
+      @click="detailShow = true">
       <span class="brand"></span>
       <span class="text">{{ seller.bulletin }}</span>
       <i class="icon-keyboard_arrow_right"></i>
@@ -46,13 +52,15 @@
 
     <!-- 浮层详情 -->
     <transition name="fade">
-      <div class="detail" v-show="detailShow">
+      <div class="detail"
+        v-show="detailShow">
         <div class="detail-wrapper clearfix">
           <div class="detail-main">
             <h1 class="name">{{ seller.name }}</h1>
 
             <div class="star-wrapper">
-              <star :size="48" :score="seller.score"></star>
+              <star :size="48"
+                :score="seller.score"></star>
             </div>
 
             <div class="title">
@@ -61,9 +69,12 @@
               <div class="line"></div>
             </div>
 
-            <ul class="detail-supports" v-if="seller.supports">
-              <li class="supports-item" v-for="(item, index) in seller.supports">
-                <span class="icon" :class="classMap[seller.supports[index].type]"></span>
+            <ul class="detail-supports"
+              v-if="seller.supports">
+              <li class="supports-item"
+                v-for="(item, index) in seller.supports">
+                <span class="icon"
+                  :class="classMap[seller.supports[index].type]"></span>
                 <span class="text">{{ seller.supports[index].description }}</span>
               </li>
             </ul>
@@ -80,14 +91,16 @@
           </div>
         </div>
 
-        <div class="detail-close" @click="detailShow = false">
+        <div class="detail-close"
+          @click="detailShow = false">
           <i class="icon-close"></i>
         </div>
       </div>
     </transition>
 
     <!-- 返回按钮 -->
-    <div class="back" @click="back">
+    <div class="back"
+      @click="back">
       <i class="icon-arrow_lift"></i>
     </div>
   </div>
@@ -100,7 +113,7 @@ export default {
   components: {
     Star
   },
-  data () {
+  data() {
     return {
       detailShow: false,
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
@@ -113,7 +126,7 @@ export default {
   },
   watch: {},
   methods: {
-    back () {
+    back() {
       this.$router.push({
         path: '/index'
       })
@@ -121,15 +134,15 @@ export default {
   },
   filters: {},
   computed: {},
-  created () {},
-  mounted () {},
-  destroyed () {}
+  created() { },
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .seller-header {
   position: relative;
@@ -165,7 +178,7 @@ export default {
           vertical-align: top;
           background-size: 30px 18px;
           background-repeat: no-repeat;
-          @include bg-image('./img/brand');
+          @include bg-image("./img/brand");
         }
         .name {
           margin-left: 6px;
@@ -189,19 +202,19 @@ export default {
           background-repeat: no-repeat;
           vertical-align: top;
           &.decrease {
-            @include bg-image('./img/decrease_1');
+            @include bg-image("./img/decrease_1");
           }
           &.discount {
-            @include bg-image('./img/discount_1');
+            @include bg-image("./img/discount_1");
           }
           &.guarantee {
-            @include bg-image('./img/guarantee_1');
+            @include bg-image("./img/guarantee_1");
           }
           &.invoice {
-            @include bg-image('./img/invoice_1');
+            @include bg-image("./img/invoice_1");
           }
           &.special {
-            @include bg-image('./img/special_1');
+            @include bg-image("./img/special_1");
           }
         }
         .text {
@@ -244,7 +257,7 @@ export default {
       display: inline-block;
       width: 22px;
       height: 12px;
-      @include bg-image('./img/bulletin');
+      @include bg-image("./img/bulletin");
       background-size: 22px 12px;
       background-repeat: no-repeat;
       vertical-align: top;
@@ -306,7 +319,7 @@ export default {
             position: relative;
             top: -6px;
             left: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2)
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
           }
           .text {
             text-align: center;
@@ -334,19 +347,19 @@ export default {
               background-repeat: no-repeat;
               display: inline-block;
               &.decrease {
-                @include bg-image('./img/decrease_2');
+                @include bg-image("./img/decrease_2");
               }
               &.discount {
-                @include bg-image('./img/discount_2');
+                @include bg-image("./img/discount_2");
               }
               &.guarantee {
-                @include bg-image('./img/guarantee_2');
+                @include bg-image("./img/guarantee_2");
               }
               &.invoice {
-                @include bg-image('./img/invoice_2');
+                @include bg-image("./img/invoice_2");
               }
               &.special {
-                @include bg-image('./img/special_2');
+                @include bg-image("./img/special_2");
               }
             }
             .text {
@@ -408,10 +421,12 @@ export default {
 }
 
 // 淡入淡出
-.fade-enter-active, .fade-leave-active {
-  transition: all .5s ease;
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

@@ -22,7 +22,7 @@
 <script>
 export default {
   components: {},
-  data () {
+  data() {
     return {}
   },
   props: {
@@ -34,14 +34,14 @@ export default {
   methods: {},
   filters: {},
   computed: {},
-  created () {},
-  mounted () {}
+  created() { },
+  mounted() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .order-item {
   display: flex;
@@ -100,7 +100,7 @@ export default {
     box-sizing: border-box;
     font-size: 14px;
     color: #666;
-    @include onepx('top');
+    @include onepx("top");
     .food {
       line-height: 25px;
       font-size: 12px;
@@ -122,7 +122,7 @@ export default {
   }
   .bottom {
     flex: 1;
-    @include onepx('top');
+    @include onepx("top");
     padding: 0 15px;
     font-size: 14px;
     height: 24px;

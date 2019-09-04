@@ -5,21 +5,27 @@
     <!-- 购物车 -->
     <div class="content">
       <!-- 主要内容 -->
-      <div class="main-content" @click="toggleList">
+      <div class="main-content"
+        @click="toggleList">
         <div class="left">
           <div class="logo-wrapper">
-            <div class="logo" :class="{'logoLight': totalCount > 0}">
+            <div class="logo"
+              :class="{'logoLight': totalCount > 0}">
               <i class="icon-shopping_cart"></i>
             </div>
-            <div class="totalCount" v-show="totalCount > 0">{{ totalCount }}</div>
+            <div class="totalCount"
+              v-show="totalCount > 0">{{ totalCount }}</div>
           </div>
 
-          <div class="price" :class="{'priceLight':totalCount > 0}">￥{{ totalPrice }}</div>
+          <div class="price"
+            :class="{'priceLight':totalCount > 0}">￥{{ totalPrice }}</div>
           <div class="desc">另需配送费 {{ deliveryPrice }} 元</div>
         </div>
 
-        <div class="right" @click.stop="pay">
-          <div class="pay" :class="{'payLight': this.totalPrice >= this.minPrice}">{{ payDesc }}</div>
+        <div class="right"
+          @click.stop="pay">
+          <div class="pay"
+            :class="{'payLight': this.totalPrice >= this.minPrice}">{{ payDesc }}</div>
         </div>
       </div>
 
@@ -27,10 +33,11 @@
       <div class="ball-content">
         <div v-for="ball in balls">
           <transition name="drop"
-                      @before-enter="beforeDrop"
-                      @enter="dropping"
-                      @after-enter="afterDrop">
-            <div class="ball" v-show="ball.show">
+            @before-enter="beforeDrop"
+            @enter="dropping"
+            @after-enter="afterDrop">
+            <div class="ball"
+              v-show="ball.show">
               <div class="inner inner-hook"></div>
             </div>
           </transition>
@@ -39,15 +46,19 @@
 
       <!-- 购物车列表 -->
       <transition name="fold">
-        <div class="shopcart-list" v-show="listShow">
+        <div class="shopcart-list"
+          v-show="listShow">
           <div class="list-header">
             <h1 class="title">购物车</h1>
-            <span class="empty" @click="empty">清空</span>
+            <span class="empty"
+              @click="empty">清空</span>
           </div>
 
-          <div class="list-content" ref="listContentRef">
+          <div class="list-content"
+            ref="listContentRef">
             <ul>
-              <li class="food" v-for="food in selectFoods">
+              <li class="food"
+                v-for="food in selectFoods">
                 <span class="name">{{ food.name }}</span>
 
                 <div class="price">
@@ -66,7 +77,9 @@
 
     <!-- 模糊背景 -->
     <transition name="fade">
-      <div class="background" @click="hideList" v-show="listShow"></div>
+      <div class="background"
+        @click="hideList"
+        v-show="listShow"></div>
     </transition>
   </div>
 </template>
@@ -80,7 +93,7 @@ export default {
   components: {
     CartControl
   },
-  data () {
+  data() {
     return {
       // 每个小球当前的状态
       balls: [
@@ -105,7 +118,7 @@ export default {
     // 加入购物车的商品
     selectFoods: {
       type: Array,
-      default () {
+      default() {
         return []
       }
     },
@@ -121,7 +134,7 @@ export default {
     }
   },
   watch: {
-    selectFoods () {
+    selectFoods() {
       if (this.scroll) {
         this.scroll.refresh()
       }
@@ -130,7 +143,7 @@ export default {
   methods: {
     // 点击 + 派发的事件
     // 取一个未下落的小球执行接下来的下落动作
-    drop (el) {
+    drop(el) {
       for (let i = 0; i < this.balls.length; i++) {
         let ball = this.balls[i]
         if (!ball.show) {
@@ -142,7 +155,7 @@ export default {
       }
     },
     // 对 show = true 的小球设置动作
-    beforeDrop (el) {
+    beforeDrop(el) {
       let count = this.balls.length
 
       while (count--) {
@@ -162,7 +175,7 @@ export default {
         }
       }
     },
-    dropping (el, done) {
+    dropping(el, done) {
       /* eslint-disable no-unused-vars */
       let rf = el.offsetHeight // 重绘，否则小球不会消失
       this.$nextTick(() => {
@@ -177,14 +190,14 @@ export default {
       })
     },
     // 动作做完就把该小球 show=false
-    afterDrop (el) {
+    afterDrop(el) {
       let ball = this.dropBalls.shift()
       if (ball) {
         ball.show = false
         el.style.display = 'none'
       }
     },
-    toggleList () {
+    toggleList() {
       if (!this.totalCount) {
         return
       }
@@ -206,7 +219,7 @@ export default {
       }
     },
     // 支付
-    pay () {
+    pay() {
       if (this.totalPrice < this.minPrice) {
         return
       }
@@ -214,21 +227,21 @@ export default {
       MessageBox.confirm(`您共需支付 ${this.totalPrice} 元`, '结算')
     },
     // 清空
-    empty () {
+    empty() {
       this.selectFoods.forEach((food) => {
         food.count = 0
       })
 
       this.listShow = false
     },
-    hideList () {
+    hideList() {
       this.listShow = false
     }
   },
   filters: {},
   computed: {
     // 所选商品总价
-    totalPrice () {
+    totalPrice() {
       let total = 0
       this.selectFoods.forEach((food) => {
         total += food.price * food.count
@@ -236,7 +249,7 @@ export default {
       return total
     },
     // 所选商品总数量
-    totalCount () {
+    totalCount() {
       let total = 0
       this.selectFoods.forEach((food) => {
         total += food.count
@@ -244,7 +257,7 @@ export default {
       return total
     },
     // 20元起送 、 还差10元起送 、 去结算
-    payDesc () {
+    payDesc() {
       if (this.totalPrice === 0) {
         return `${this.minPrice}元起送`
       } else if (this.totalPrice < this.minPrice) {
@@ -254,15 +267,15 @@ export default {
       }
     }
   },
-  created () {},
-  mounted () {},
-  destroyed () {}
+  created() { },
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .shopcart {
   .content {
@@ -305,7 +318,7 @@ export default {
             }
           }
           .logoLight {
-            background-color: #FFDA61;
+            background-color: #ffda61;
             & i {
               color: #333;
             }
@@ -361,7 +374,7 @@ export default {
           color: rgba(255, 255, 255, 0.4);
           background-color: #2b333b;
           &.payLight {
-            background-color: #FFDA61;
+            background-color: #ffda61;
             color: #333;
           }
         }
@@ -389,7 +402,7 @@ export default {
         width: 16px;
         height: 16px;
         border-radius: 50%;
-        background-color: #FFD161;
+        background-color: #ffd161;
         transition: all 0.4s linear;
       }
     }
@@ -401,10 +414,12 @@ export default {
       z-index: -1;
       width: 100%;
       transform: translate3d(0, -100%, 0);
-      &.fold-enter-active, &.fold-leave-active {
+      &.fold-enter-active,
+      &.fold-leave-active {
         transition: all 0.5s;
       }
-      &.fold-enter, &.fold-leave-active {
+      &.fold-enter,
+      &.fold-leave-active {
         transform: translate3d(0, 0, 0);
       }
       .list-header {
@@ -468,10 +483,12 @@ export default {
     opacity: 1;
     backdrop-filter: blur(10px);
     background-color: rgba(7, 17, 27, 0.6);
-    &.fold-enter-active, &.fold-leave-active {
-      transition: all .5s;
+    &.fold-enter-active,
+    &.fold-leave-active {
+      transition: all 0.5s;
     }
-    &.fold-enter, &.fold-leave-active {
+    &.fold-enter,
+    &.fold-leave-active {
       opacity: 0;
       background: rgba(7, 17, 27, 0);
     }

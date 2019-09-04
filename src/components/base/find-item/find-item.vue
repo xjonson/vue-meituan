@@ -17,7 +17,7 @@
 <script>
 export default {
   components: {},
-  data () {
+  data() {
     return {}
   },
   props: {
@@ -29,14 +29,14 @@ export default {
   methods: {},
   filters: {},
   computed: {},
-  created () {},
-  mounted () {}
+  created() { },
+  mounted() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .find-item {
   display: flex;

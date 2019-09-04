@@ -3,22 +3,30 @@
 <template>
   <ul class="tab-bar">
     <!-- ?_? 当设置 to="/" 时，首页ico总是高亮，搞不懂 ?_? -->
-    <router-link class="index" tag="li" to="/index">
+    <router-link class="index"
+      tag="li"
+      to="/index">
       <i class="ico-index"></i>
       <span>首页</span>
     </router-link>
 
-    <router-link class="find" tag="li" to="/find">
+    <router-link class="find"
+      tag="li"
+      to="/find">
       <i class="ico-find"></i>
       <span>发现</span>
     </router-link>
 
-    <router-link class="order" tag="li" to="/order">
+    <router-link class="order"
+      tag="li"
+      to="/order">
       <i class="ico-order"></i>
       <span>订单</span>
     </router-link>
 
-    <router-link class="mine" tag="li" to="/mine">
+    <router-link class="mine"
+      tag="li"
+      to="/mine">
       <i class="ico-mine"></i>
       <span>我的</span>
     </router-link>
@@ -28,7 +36,7 @@
 <script>
 export default {
   components: {},
-  data () {
+  data() {
     return {}
   },
   props: {},
@@ -36,15 +44,15 @@ export default {
   methods: {},
   filters: {},
   computed: {},
-  created () {},
-  mounted () {},
-  destroyed () {}
+  created() { },
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .tab-bar {
   @include onepx();
@@ -65,7 +73,7 @@ export default {
       width: 25px;
       height: 25px;
       margin: 3px auto;
-      background: url('./tab-icons.png') no-repeat;
+      background: url("./tab-icons.png") no-repeat;
       background-size: 25px auto;
     }
     span {
@@ -86,10 +94,10 @@ export default {
   }
 
   .ico-find {
-    background-image: url('./find.png');
+    background-image: url("./find.png");
   }
   .find.router-link-active .ico-find {
-    background-image: url('./find1.png');
+    background-image: url("./find1.png");
   }
 
   .ico-order {

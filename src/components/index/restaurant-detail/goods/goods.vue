@@ -5,14 +5,17 @@
     <!-- 左右联动 -->
     <div class="goods">
       <!-- 左侧菜单 -->
-      <div class="menu-wrapper" ref="menuRef">
+      <div class="menu-wrapper"
+        ref="menuRef">
         <ul>
           <li class="menu-item"
-              v-for="(item, index) in goods"
-              :class="{'current': currentIndex === index}"
-              @click="selectMenu(index, $event)">
+            v-for="(item, index) in goods"
+            :class="{'current': currentIndex === index}"
+            @click="selectMenu(index, $event)">
             <span class="text">
-              <span class="icon" v-show="item.type > 0" :class="classMap[item.type]"></span>
+              <span class="icon"
+                v-show="item.type > 0"
+                :class="classMap[item.type]"></span>
               {{ item.name }}
             </span>
           </li>
@@ -20,13 +23,18 @@
       </div>
 
       <!-- 右侧食物列表 -->
-      <div class="foods-wrapper" ref="foodsRef">
+      <div class="foods-wrapper"
+        ref="foodsRef">
         <ul>
-          <li class="foods-list foods-list-hook" v-for="item in goods" ref="foodList">
+          <li class="foods-list foods-list-hook"
+            v-for="item in goods"
+            ref="foodList">
             <h1 class="title">{{ item.name }}</h1>
 
             <ul>
-              <li class="foods-item" v-for="food in item.foods" @click="toFoodDetail(food, $event)">
+              <li class="foods-item"
+                v-for="food in item.foods"
+                @click="toFoodDetail(food, $event)">
                 <div class="icon">
                   <img v-lazy="food.icon">
                 </div>
@@ -42,11 +50,13 @@
 
                   <div class="price">
                     <span class="now">￥{{ food.price }}</span>
-                    <span class="old" v-show="food.oldPrice">￥{{ food.oldPrice }}</span>
+                    <span class="old"
+                      v-show="food.oldPrice">￥{{ food.oldPrice }}</span>
                   </div>
 
                   <div class="control">
-                    <cart-control :food="food" @drop="drop"></cart-control>
+                    <cart-control :food="food"
+                      @drop="drop"></cart-control>
                   </div>
                 </div>
               </li>
@@ -57,13 +67,15 @@
 
       <!-- 购物车 -->
       <shopcart ref="shopcartRef"
-                :selectFoods="selectFoods"
-                :deliveryPrice="seller.deliveryPrice"
-                :minPrice="seller.minPrice"></shopcart>
+        :selectFoods="selectFoods"
+        :deliveryPrice="seller.deliveryPrice"
+        :minPrice="seller.minPrice"></shopcart>
     </div>
 
     <!-- 商品详情页 -->
-    <goods-detail @drop="drop" :food="selectedFood" ref="goodsDetailRef"></goods-detail>
+    <goods-detail @drop="drop"
+      :food="selectedFood"
+      ref="goodsDetailRef"></goods-detail>
   </div>
 </template>
 
@@ -80,7 +92,7 @@ export default {
     CartControl,
     GoodsDetail
   },
-  data () {
+  data() {
     return {
       // 商品数据
       goods: [],
@@ -103,7 +115,7 @@ export default {
   watch: {},
   methods: {
     // 初始化数据
-    _initData () {
+    _initData() {
       axios.get('/api/goods').then(res => {
         if (res.data.code === 0) {
           this.goods = res.data.data
@@ -121,7 +133,7 @@ export default {
       })
     },
     // 初始化 BScroll
-    _initScroll () {
+    _initScroll() {
       this.menuScroll = new BScroll(this.$refs.menuRef, {
         click: true
       })
@@ -136,7 +148,7 @@ export default {
       })
     },
     // 计算右侧每一大项的高度
-    _calcHeight () {
+    _calcHeight() {
       let foodList = this.$refs.foodsRef.getElementsByClassName('foods-list-hook')
       let height = 0
       this.listHeight.push(height)
@@ -151,7 +163,7 @@ export default {
     // better-scroll 默认会阻止浏览器的原生 click 事件。
     // 当设置为 true，better-scroll 会派发一个 click 事件
     // 我们会给派发的 event 参数加一个私有属性 _constructed，值为 true
-    selectMenu (index, event) {
+    selectMenu(index, event) {
       // 防止pc端触发两次点击
       if (!event._constructed) {
         return
@@ -161,14 +173,14 @@ export default {
       let el = foodList[index]
       this.foodsScroll.scrollToElement(el, 100)
     },
-    drop (target) {
+    drop(target) {
       // 性能优化，异步异步执行下落动画
       this.$nextTick(() => {
         this.$refs.shopcartRef.drop(target)
       })
     },
     // 点击进入商品详情页
-    toFoodDetail (food, event) {
+    toFoodDetail(food, event) {
       // 防止pc端触发两次点击
       if (!event._constructed) {
         return
@@ -179,7 +191,7 @@ export default {
   },
   filters: {},
   computed: {
-    currentIndex () {
+    currentIndex() {
       for (let i = 0; i < this.listHeight.length; i++) {
         let h1 = this.listHeight[i]
         let h2 = this.listHeight[i + 1]
@@ -191,7 +203,7 @@ export default {
       }
       return 0
     },
-    selectFoods () {
+    selectFoods() {
       let select = []
       // 之前一直错，可能是 this 指向问题，不用箭头函数
       this.goods.forEach((good) => {
@@ -204,18 +216,18 @@ export default {
       return select
     }
   },
-  created () {
+  created() {
     // 初始化数据
     this._initData()
   },
-  mounted () {},
-  destroyed () {}
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .goods {
   display: flex;
@@ -235,7 +247,7 @@ export default {
       height: 54px;
       line-height: 14px;
       padding: 0 12px;
-      @include onepx('bottom', true);
+      @include onepx("bottom", true);
       &.current {
         position: relative;
         margin-top: -1px;
@@ -256,19 +268,19 @@ export default {
           background-repeat: no-repeat;
           vertical-align: top;
           &.decrease {
-            @include bg-image('./img/decrease_3');
+            @include bg-image("./img/decrease_3");
           }
           &.discount {
-            @include bg-image('./img/discount_3');
+            @include bg-image("./img/discount_3");
           }
           &.guarantee {
-            @include bg-image('./img/guarantee_3');
+            @include bg-image("./img/guarantee_3");
           }
           &.invoice {
-            @include bg-image('./img/invoice_3');
+            @include bg-image("./img/invoice_3");
           }
           &.special {
-            @include bg-image('./img/special_3');
+            @include bg-image("./img/special_3");
           }
         }
       }
@@ -291,7 +303,7 @@ export default {
         display: flex;
         margin: 18px;
         padding-bottom: 18px;
-        @include onepx('bottom', true);
+        @include onepx("bottom", true);
         .icon {
           flex: 0 0 57px;
           width: 57px;

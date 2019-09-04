@@ -2,7 +2,8 @@
 
 <template>
   <div class="header-bar">
-    <i class="icon-arrow_lift" @click="back"></i>
+    <i class="icon-arrow_lift"
+      @click="back"></i>
     <h1>{{text}}</h1>
   </div>
 </template>
@@ -10,7 +11,7 @@
 <script>
 export default {
   components: {},
-  data () {
+  data() {
     return {}
   },
   props: {
@@ -21,20 +22,20 @@ export default {
   },
   watch: {},
   methods: {
-    back () {
+    back() {
       this.$emit('back')
     }
   },
   filters: {},
   computed: {},
-  created () {},
-  mounted () {}
+  created() { },
+  mounted() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .header-bar {
   position: fixed;

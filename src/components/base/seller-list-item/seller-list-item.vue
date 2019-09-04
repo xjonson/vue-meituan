@@ -1,7 +1,8 @@
 <!-- 商家列表 组件 -->
 
 <template>
-  <div class="seller-list-item" @click="toRestaurant(data)">
+  <div class="seller-list-item"
+    @click="toRestaurant(data)">
     <div class="left">
       <img v-lazy="data.pic_url">
     </div>
@@ -10,7 +11,9 @@
       <div class="name">{{ data.name }}</div>
 
       <div class="mid clearfix">
-        <star class="fl" :size="24" :score="data.wm_poi_score"></star>
+        <star class="fl"
+          :size="24"
+          :score="data.wm_poi_score"></star>
         <span class="count fl">月售{{ data.month_sale_num }}</span>
         <span class="distance fr">{{ data.distance }}</span>
         <span class="time fr">{{ data.avg_delivery_time }}分钟</span>
@@ -22,7 +25,8 @@
         <span class="average">{{ data.average_price_tip }}</span>
       </div>
 
-      <div class="activity" v-for="sup in data.discounts2">
+      <div class="activity"
+        v-for="sup in data.discounts2">
         <p><img :src="sup.icon_url">{{sup.info}}</p>
       </div>
     </div>
@@ -36,35 +40,35 @@ export default {
   components: {
     Star
   },
-  data () {
+  data() {
     return {}
   },
   props: {
     data: {
       type: Object,
-      default () {
+      default() {
         return {}
       }
     }
   },
   watch: {},
   methods: {
-    toRestaurant (data) {
+    toRestaurant(data) {
       // console.log(data)
       this.$emit('toRestaurant', data)
     }
   },
   filters: {},
   computed: {},
-  created () {},
-  mounted () {},
-  destroyed () {}
+  created() { },
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .seller-list-item {
   margin-bottom: 5px;
@@ -72,8 +76,7 @@ export default {
   flex-direction: row;
   padding: 10px 0;
   overflow: hidden;
-  @include onepx('bottom')
-  &:last-child {
+  @include onepx("bottom") &: last-child {
     &:after {
       border-top: 0;
     }
@@ -107,7 +110,8 @@ export default {
       font-size: 12px;
       color: #666;
       margin-top: 7px;
-      .star {}
+      .star {
+      }
       .count {
         margin-left: 10px;
       }
@@ -133,7 +137,6 @@ export default {
       .deliver {
         @include right-bar();
       }
-      .average {}
     }
     .activity {
       flex: 1;
@@ -141,7 +144,7 @@ export default {
       color: #b0b0b0;
       margin-top: 7px;
       p {
-        @include ellipsis(1)
+        @include ellipsis(1);
       }
       img {
         width: 16px;

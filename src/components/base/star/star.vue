@@ -1,8 +1,11 @@
 <!-- 评星 组件 -->
 
 <template>
-  <div class="star" :class="starType">
-    <span class="star-item" v-for="item in itemClasses" :class="item"></span>
+  <div class="star"
+    :class="starType">
+    <span class="star-item"
+      v-for="item in itemClasses"
+      :class="item"></span>
   </div>
 </template>
 
@@ -14,7 +17,7 @@ const CLSOFF = 'off'
 
 export default {
   components: {},
-  data () {
+  data() {
     return {}
   },
   props: {
@@ -34,11 +37,11 @@ export default {
   filters: {},
   computed: {
     // star-on star-half star-off
-    starType () {
+    starType() {
       return 'star-' + this.size
     },
     // 动态添加 'on' 'half' 'off'
-    itemClasses () {
+    itemClasses() {
       let result = []
       let score = Math.floor(this.score * 2) / 2
       // 是否有半星（小数）
@@ -64,15 +67,15 @@ export default {
       return result
     }
   },
-  created () {},
-  mounted () {},
-  destroyed () {}
+  created() { },
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .star {
   .star-item {
@@ -89,13 +92,13 @@ export default {
         margin-right: 0;
       }
       &.on {
-        @include bg-image('img/star48_on');
+        @include bg-image("img/star48_on");
       }
       &.half {
-        @include bg-image('img/star48_half');
+        @include bg-image("img/star48_half");
       }
       &.off {
-        @include bg-image('img/star48_off');
+        @include bg-image("img/star48_off");
       }
     }
   }
@@ -109,13 +112,13 @@ export default {
         margin-right: 0;
       }
       &.on {
-        @include bg-image('img/star36_on');
+        @include bg-image("img/star36_on");
       }
       &.half {
-        @include bg-image('img/star36_half');
+        @include bg-image("img/star36_half");
       }
       &.off {
-        @include bg-image('img/star36_off');
+        @include bg-image("img/star36_off");
       }
     }
   }
@@ -129,13 +132,13 @@ export default {
         margin-right: 0;
       }
       &.on {
-        @include bg-image('img/star24_on');
+        @include bg-image("img/star24_on");
       }
       &.half {
-        @include bg-image('img/star24_half');
+        @include bg-image("img/star24_half");
       }
       &.off {
-        @include bg-image('img/star24_off');
+        @include bg-image("img/star24_off");
       }
     }
   }

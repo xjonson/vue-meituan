@@ -5,9 +5,9 @@
     <header-bar @back="back"></header-bar>
 
     <seller-list-item v-for="item in restaurantList"
-                      :key="item.name"
-                      :data="item"
-                      @toRestaurant="toRestaurant()"></seller-list-item>
+      :key="item.name"
+      :data="item"
+      @toRestaurant="toRestaurant()"></seller-list-item>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
     SellerListItem,
     HeaderBar
   },
-  data () {
+  data() {
     return {
       restaurantList: []
     }
@@ -30,7 +30,7 @@ export default {
   props: {},
   watch: {},
   methods: {
-    _initRestaurantListData () {
+    _initRestaurantListData() {
       axios.get('/api/restaurantList').then(res => {
         if (res.data.code === 0) {
           this.restaurantList = res.data.data.data.poilist
@@ -39,12 +39,12 @@ export default {
         console.log(err)
       })
     },
-    back () {
+    back() {
       this.$router.push({
         path: '/index'
       })
     },
-    toRestaurant () {
+    toRestaurant() {
       this.$router.push({
         path: '/restaurant'
       })
@@ -52,17 +52,17 @@ export default {
   },
   filters: {},
   computed: {},
-  created () {
+  created() {
     // 初始化列表数据
     this._initRestaurantListData()
   },
-  mounted () {}
+  mounted() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .restaurant-list {
   background-color: #fff;

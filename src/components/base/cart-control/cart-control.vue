@@ -4,15 +4,17 @@
   <div class="cart-control">
     <transition name="move">
       <div class="decrease"
-           @click.stop.prevent="decrease($event)"
-           v-show="food.count > 0">
+        @click.stop.prevent="decrease($event)"
+        v-show="food.count > 0">
         <i class="icon-remove_circle_outline"></i>
       </div>
     </transition>
 
-    <div class="num" v-show="food.count > 0">{{ food.count }}</div>
+    <div class="num"
+      v-show="food.count > 0">{{ food.count }}</div>
 
-    <div class="add" @click.stop.prevent="add($event)">
+    <div class="add"
+      @click.stop.prevent="add($event)">
       <i class="icon-add_circle"></i>
     </div>
   </div>
@@ -23,7 +25,7 @@ import Vue from 'vue'
 
 export default {
   components: {},
-  data () {
+  data() {
     return {}
   },
   props: {
@@ -34,7 +36,7 @@ export default {
   },
   watch: {},
   methods: {
-    decrease (event) {
+    decrease(event) {
       // 解决移动端响应两次点击事件的问题
       if (!event._constructed) {
         return
@@ -44,7 +46,7 @@ export default {
         this.food.count--
       }
     },
-    add (event) {
+    add(event) {
       // 解决移动端响应两次点击事件的问题
       if (!event._constructed) {
         return
@@ -64,24 +66,25 @@ export default {
     }
   },
   computed: {},
-  created () {},
-  mounted () {}
+  created() { },
+  mounted() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .cart-control {
   font-size: 0;
   line-height: 24px;
-  .decrease, .add {
+  .decrease,
+  .add {
     display: inline-block;
     padding: 6px;
     i {
       font-size: 24px;
-      color: #5ED14F;
+      color: #5ed14f;
       display: inline-block;
     }
   }
@@ -95,22 +98,24 @@ export default {
   }
 }
 
-.move-enter-active, .move-leave-active {
+.move-enter-active,
+.move-leave-active {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-  transition: all .4s;
+  transition: all 0.4s;
   i {
     transform: rotate(0);
-    transition: all .4s;
+    transition: all 0.4s;
   }
 }
-.move-enter, .move-leave-to {
+.move-enter,
+.move-leave-to {
   opacity: 0;
   transform: translate3d(24px, 0, 0);
-  transition: all .4s;
+  transition: all 0.4s;
   i {
     transform: rotate(360deg);
-    transition: all .4s;
+    transition: all 0.4s;
   }
 }
 </style>

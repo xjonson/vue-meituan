@@ -1,7 +1,8 @@
 <!-- 种类单个 组件 -->
 
 <template>
-  <div class="types-item" @click="toList">
+  <div class="types-item"
+    @click="toList">
     <img :src="ico">
     <span>{{ txt }}</span>
   </div>
@@ -10,7 +11,7 @@
 <script>
 export default {
   components: {},
-  data () {
+  data() {
     return {}
   },
   props: {
@@ -25,21 +26,21 @@ export default {
   },
   watch: {},
   methods: {
-    toList () {
+    toList() {
       this.$emit('toList')
     }
   },
   filters: {},
   computed: {},
-  created () {},
-  mounted () {},
-  destroyed () {}
+  created() { },
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .types-item {
   float: left;

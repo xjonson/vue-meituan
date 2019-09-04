@@ -20,7 +20,7 @@ export default {
     TabBar,
     FindItem
   },
-  data () {
+  data() {
     return {
       findListData: []
     }
@@ -28,7 +28,7 @@ export default {
   props: {},
   watch: {},
   methods: {
-    _initFindListData () {
+    _initFindListData() {
       axios.get('/api/findList').then(res => {
         if (res.data.code === 0) {
           this.findListData = res.data.data.data
@@ -40,17 +40,17 @@ export default {
   },
   filters: {},
   computed: {},
-  created () {
+  created() {
     this._initFindListData()
   },
-  mounted () {},
-  destroyed () {}
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .find {
   margin-bottom: 50px;

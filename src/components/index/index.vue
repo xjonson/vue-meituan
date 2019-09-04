@@ -5,7 +5,8 @@
     <!-- 轮播图 -->
     <div class="slider">
       <mt-swipe :auto="3000">
-        <mt-swipe-item v-for="item in swipeData" :key="item.pic">
+        <mt-swipe-item v-for="item in swipeData"
+          :key="item.pic">
           <img :src="item.pic">
         </mt-swipe-item>
       </mt-swipe>
@@ -14,9 +15,10 @@
     <!-- 种类 -->
     <div class="types">
       <types-item v-for="item in types"
-                  :key="item.ico"
-                  :ico="item.ico"
-                  :txt="item.txt" @toList="toList(item)"></types-item>
+        :key="item.ico"
+        :ico="item.ico"
+        :txt="item.txt"
+        @toList="toList(item)"></types-item>
     </div>
 
     <!-- 横线分隔条 -->
@@ -26,9 +28,9 @@
     <div class="nearby">
       <title-bar txt="附近商家"></title-bar>
       <seller-list-item v-for="item in indexList"
-                        :key="item.name"
-                        :data="item"
-                        @toRestaurant="toRestaurant()"></seller-list-item>
+        :key="item.name"
+        :data="item"
+        @toRestaurant="toRestaurant()"></seller-list-item>
     </div>
 
     <tab-bar></tab-bar>
@@ -51,7 +53,7 @@ export default {
     TitleBar,
     SellerListItem
   },
-  data () {
+  data() {
     return {
       swipeData: [
         {
@@ -98,18 +100,18 @@ export default {
   props: {},
   watch: {},
   methods: {
-    toList (item) {
+    toList(item) {
       this.$router.push({
         path: '/restaurant_list'
       })
     },
-    toRestaurant () {
+    toRestaurant() {
       this.$router.push({
         path: '/restaurant'
       })
     },
     // 初始化列表数据
-    _initIndexListData () {
+    _initIndexListData() {
       axios.get('/api/indexList').then(res => {
         // console.log(res)
         if (res.data.code === 0) {
@@ -122,18 +124,18 @@ export default {
   },
   filters: {},
   computed: {},
-  created () {
+  created() {
     // 初始化列表数据
     this._initIndexListData()
   },
-  mounted () {},
-  destroyed () {}
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .index {
   .slider {

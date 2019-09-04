@@ -20,7 +20,7 @@ export default {
     TabBar,
     OrderItem
   },
-  data () {
+  data() {
     return {
       orderData: []
     }
@@ -29,7 +29,7 @@ export default {
   watch: {},
   methods: {
     // 初始化列表数据
-    _initIndexListData () {
+    _initIndexListData() {
       axios.get('/api/indexList').then(res => {
         // console.log(res)
         if (res.data.code === 0) {
@@ -42,18 +42,19 @@ export default {
   },
   filters: {},
   computed: {},
-  created () {
+  created() {
     // 初始化列表数据
     this._initIndexListData()
   },
-  mounted () {},
-  destroyed () {}
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
-.order {}
+.order {
+}
 </style>

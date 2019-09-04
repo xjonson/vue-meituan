@@ -9,7 +9,7 @@
 <script>
 export default {
   components: {},
-  data () {
+  data() {
     return {}
   },
   props: {
@@ -22,15 +22,15 @@ export default {
   methods: {},
   filters: {},
   computed: {},
-  created () {},
-  mounted () {},
-  destroyed () {}
+  created() { },
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .title-bar {
   height: 40px;
@@ -42,7 +42,7 @@ export default {
     font-weight: bold;
     color: #333;
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       top: 20px;
       left: -45px;
@@ -52,7 +52,7 @@ export default {
       transform: scaleY(0.5);
     }
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       top: 20px;
       right: -43px;

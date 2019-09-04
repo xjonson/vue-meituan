@@ -2,7 +2,9 @@
 
 <template>
   <transition name="shift">
-    <div class="goods-detail" v-show="pageShow" ref="goodsDetailRef">
+    <div class="goods-detail"
+      v-show="pageShow"
+      ref="goodsDetailRef">
       <!-- better-scroll -->
       <div>
         <!-- 商品图片 -->
@@ -21,15 +23,19 @@
 
           <div class="price">
             <span class="now">￥{{food.price}}</span>
-            <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+            <span class="old"
+              v-show="food.oldPrice">￥{{food.oldPrice}}</span>
           </div>
 
           <div class="control">
-            <cart-control :food="food" @drop="drop"></cart-control>
+            <cart-control :food="food"
+              @drop="drop"></cart-control>
           </div>
 
           <transition name="fade">
-            <div class="buy" @click.stop.prevent="addFirst" v-show="!food.count || food.count===0">
+            <div class="buy"
+              @click.stop.prevent="addFirst"
+              v-show="!food.count || food.count===0">
               加入购物车
             </div>
           </transition>
@@ -39,7 +45,8 @@
         <cross-line v-show="food.info"></cross-line>
 
         <!-- 商品介绍 -->
-        <div class="introduce" v-show="food.info">
+        <div class="introduce"
+          v-show="food.info">
           <h1 class="title">商品介绍</h1>
           <div class="desc">{{food.info}}</div>
         </div>
@@ -52,15 +59,17 @@
           <h1 class="title">商品评价</h1>
 
           <ratings-select :ratings="food.ratings"
-                          :desc="desc"
-                          :selectType="selectType"
-                          :onlyContent="onlyContent"
-                          @select="select"
-                          @switchContent="switchContent"></ratings-select>
+            :desc="desc"
+            :selectType="selectType"
+            :onlyContent="onlyContent"
+            @select="select"
+            @switchContent="switchContent"></ratings-select>
 
           <div class="ratings-wrapper">
             <ul v-show="food.ratings && food.ratings.length">
-              <li class="ratings-item" v-for="rating in food.ratings" v-show="needShow(rating.rateType, rating.text)">
+              <li class="ratings-item"
+                v-for="rating in food.ratings"
+                v-show="needShow(rating.rateType, rating.text)">
                 <div class="user">
                   <span class="name">{{rating.username}}</span>
                   <img :src="rating.avatar">
@@ -76,13 +85,15 @@
             </ul>
 
             <!-- 无评价时的样式 -->
-            <div class="no-rating" v-show="!food.ratings || !food.ratings.length">暂无评价</div>
+            <div class="no-rating"
+              v-show="!food.ratings || !food.ratings.length">暂无评价</div>
           </div>
         </div>
       </div>
 
       <!-- 返回按钮 -->
-      <div class="back" @click="hide">
+      <div class="back"
+        @click="hide">
         <i class="icon-arrow_lift"></i>
       </div>
     </div>
@@ -105,7 +116,7 @@ export default {
     CrossLine,
     RatingsSelect
   },
-  data () {
+  data() {
     return {
       // 该页是否显示
       pageShow: false,
@@ -129,7 +140,7 @@ export default {
   },
   watch: {},
   methods: {
-    show () {
+    show() {
       this.pageShow = true
 
       // 初始化 ratings-select 组件
@@ -147,11 +158,11 @@ export default {
         }
       })
     },
-    hide () {
+    hide() {
       this.pageShow = false
     },
     // 加入购物车
-    addFirst (event) {
+    addFirst(event) {
       if (!event._constructed) {
         return
       }
@@ -160,23 +171,23 @@ export default {
       // 将当前 dom 传递出去，用来做小球飞入效果
       this.$emit('drop', event.target)
     },
-    drop (target) {
+    drop(target) {
       this.$emit('drop', target)
     },
-    select (type) {
+    select(type) {
       this.selectType = type
       this.$nextTick(() => {
         this.scroll.refresh()
       })
     },
-    switchContent () {
+    switchContent() {
       this.onlyContent = !this.onlyContent
       this.$nextTick(() => {
         this.scroll.refresh()
       })
     },
     // 只显示有内容的评价
-    needShow (type, text) {
+    needShow(type, text) {
       if (this.onlyContent && !text) {
         return false
       }
@@ -191,19 +202,19 @@ export default {
   filters: {
     // moment.js: 格式化时间戳
     // 1469261964000 -> 2016-07-23, 04:19:24
-    moment (time) {
+    moment(time) {
       return moment(time).format('YYYY-MM-DD, hh:mm')
     }
   },
   computed: {},
-  created () {},
-  mounted () {}
+  created() { },
+  mounted() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .goods-detail {
   position: fixed;
@@ -216,10 +227,12 @@ export default {
   transform: translate3d(0, 0, 0);
   background-color: #fff;
   overflow: hidden;
-  &.shift-enter-active, &.shift-leave-active {
+  &.shift-enter-active,
+  &.shift-leave-active {
     transition: all 0.2s linear;
   }
-  &.shift-enter, &.shift-leave-to {
+  &.shift-enter,
+  &.shift-leave-to {
     opacity: 0;
     transform: translate3d(100%, 0, 0);
   }
@@ -296,12 +309,14 @@ export default {
       font-size: 10px;
       border-radius: 12px;
       color: #333;
-      background-color: #FFD161;
+      background-color: #ffd161;
       z-index: 10;
-      &.fade-enter-active, &.fade-leave-active {
+      &.fade-enter-active,
+      &.fade-leave-active {
         transition: all 0.4s linear;
       }
-      &.fade-enter, &.fade-leave-to {
+      &.fade-enter,
+      &.fade-leave-to {
         opacity: 0;
       }
     }
@@ -376,7 +391,7 @@ export default {
             line-height: 24px;
             margin-right: 4px;
             font-size: 12px;
-            color: rgb(147, 153,159);
+            color: rgb(147, 153, 159);
           }
         }
       }

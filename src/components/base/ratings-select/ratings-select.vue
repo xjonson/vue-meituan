@@ -3,20 +3,28 @@
 <template>
   <div class="ratings-select">
     <div class="type">
-      <span class="block positive" @click="select(2, $event)" :class="{'active':selectType===2}">
+      <span class="block positive"
+        @click="select(2, $event)"
+        :class="{'active':selectType===2}">
         {{desc.all}}<span class="count">{{ratings.length}}</span>
       </span>
 
-      <span class="block positive" @click="select(0, $event)" :class="{'active':selectType===0}">
+      <span class="block positive"
+        @click="select(0, $event)"
+        :class="{'active':selectType===0}">
         {{desc.positive}}<span class="count">{{positiveLength.length}}</span>
       </span>
 
-      <span class="block negative" @click="select(1, $event)" :class="{'active':selectType===1}">
+      <span class="block negative"
+        @click="select(1, $event)"
+        :class="{'active':selectType===1}">
         {{desc.negative}}<span class="count">{{negativeLength.length}}</span>
       </span>
     </div>
 
-    <div class="switch" @click="switchContent" :class="{'on':onlyContent===true}">
+    <div class="switch"
+      @click="switchContent"
+      :class="{'on':onlyContent===true}">
       <i class="icon-check_circle"></i>
       <span class="text">只看有内容的评价</span>
     </div>
@@ -31,21 +39,21 @@ const ALL = 2
 
 export default {
   components: {},
-  data () {
+  data() {
     return {}
   },
   props: {
     // 记录所有评价数组
     ratings: {
       type: Array,
-      default () {
+      default() {
         return []
       }
     },
     // 界面组件文字(外面可以传入)
     desc: {
       type: Object,
-      default () {
+      default() {
         return {
           all: '全部',
           positive: '满意',
@@ -67,7 +75,7 @@ export default {
   watch: {},
   methods: {
     // 切换评价类型
-    select (type, event) {
+    select(type, event) {
       if (!event._constructed) {
         return
       }
@@ -75,7 +83,7 @@ export default {
       this.$emit('select', type)
     },
     // 切换只显示有内容的评价
-    switchContent (event) {
+    switchContent(event) {
       if (!event._constructed) {
         return
       }
@@ -84,32 +92,32 @@ export default {
     }
   },
   computed: {
-    positiveLength () {
+    positiveLength() {
       return this.ratings.filter((rating) => {
         return rating.rateType === POSITIVE
       })
     },
-    negativeLength () {
+    negativeLength() {
       return this.ratings.filter((rating) => {
         return rating.rateType === NEGATIVE
       })
     }
   },
-  created () {},
-  mounted () {}
+  created() { },
+  mounted() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .ratings-select {
   .type {
     padding: 18px 0;
     margin: 0 18px;
     font-size: 0;
-    @include onepx('bottom');
+    @include onepx("bottom");
     .block {
       display: inline-block;
       padding: 8px 12px;
@@ -125,13 +133,13 @@ export default {
     .positive {
       background-color: rgba(0, 160, 220, 0.2);
       &.active {
-        background-color: rgba(0, 160, 220, 1.0);
+        background-color: rgba(0, 160, 220, 1);
       }
     }
     .negative {
       background-color: rgba(77, 85, 93, 0.2);
       &.active {
-        background-color: rgba(77, 85, 93, 1.0);
+        background-color: rgba(77, 85, 93, 1);
       }
     }
     .count {

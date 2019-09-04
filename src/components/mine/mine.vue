@@ -9,7 +9,8 @@
           <img src="../../assets/img/lazyload.jpeg">
         </div>
 
-        <div class="name-wrapper" @click="login">
+        <div class="name-wrapper"
+          @click="login">
           <span class="name">登录</span>
           <span class="desc">个人信息 <i class="iconfont icon-more"></i></span>
         </div>
@@ -69,13 +70,13 @@ export default {
     CrossLine,
     CrossItem
   },
-  data () {
+  data() {
     return {}
   },
   props: {},
   watch: {},
   methods: {
-    login () {
+    login() {
       this.$router.push({
         path: '/login'
       })
@@ -83,15 +84,15 @@ export default {
   },
   filters: {},
   computed: {},
-  created () {},
-  mounted () {},
-  destroyed () {}
+  created() { },
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .mine {
   width: 100%;

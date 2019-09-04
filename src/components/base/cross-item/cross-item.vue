@@ -3,7 +3,9 @@
 <template>
   <div class="cross-item">
     <!-- 实心图标 -->
-    <span class="ico"><slot></slot></span>
+    <span class="ico">
+      <slot></slot>
+    </span>
     <span class="name">{{name}}</span>
   </div>
 </template>
@@ -11,7 +13,7 @@
 <script>
 export default {
   components: {},
-  data () {
+  data() {
     return {}
   },
   props: {
@@ -24,21 +26,21 @@ export default {
   methods: {},
   filters: {},
   computed: {},
-  created () {},
-  mounted () {}
+  created() { },
+  mounted() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .cross-item {
   color: #333;
   height: 44px;
   line-height: 46px;
   background: #fff;
-  border-bottom: 1px solid #E4E4E4;
+  border-bottom: 1px solid #e4e4e4;
   margin: 0 15px;
   padding: 0 10px;
   .ico {

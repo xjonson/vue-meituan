@@ -1,7 +1,8 @@
 <!-- 商家模块 商家页面 -->
 
 <template>
-  <div class="seller" ref="sellerRef">
+  <div class="seller"
+    ref="sellerRef">
     <div>
       <!-- 概览 -->
       <div class="overview">
@@ -9,14 +10,17 @@
           <div class="name">{{seller.name}}</div>
 
           <div class="star-wrapper">
-            <star :size="36" :score="seller.score"></star>
+            <star :size="36"
+              :score="seller.score"></star>
             <span class="ratingCount">({{seller.ratingCount}})</span>
           </div>
 
           <div class="sellCount">月售{{seller.sellCount}}单</div>
 
-          <div class="collect-icon" @click="toggleFavorites">
-            <i class="icon-favorite" :class="{'active': favorite}"></i>
+          <div class="collect-icon"
+            @click="toggleFavorites">
+            <i class="icon-favorite"
+              :class="{'active': favorite}"></i>
             <div class="text">{{favorite?'已收藏':'未收藏'}}</div>
           </div>
         </div>
@@ -48,8 +52,10 @@
         <div class="text">{{seller.bulletin}}</div>
 
         <ul v-if="seller.supports">
-          <li class="support" v-for="support in seller.supports">
-            <span class="icon" :class="classMap[support.type]"></span>
+          <li class="support"
+            v-for="support in seller.supports">
+            <span class="icon"
+              :class="classMap[support.type]"></span>
             <span class="description">{{support.description}}</span>
           </li>
         </ul>
@@ -62,9 +68,12 @@
       <div class="photo">
         <h1 class="title">商家实景</h1>
 
-        <div class="pic-wrapper" ref="picRef">
-          <ul class="pic-list" ref="picListRef">
-            <li class="pic-item"v-for="pic in seller.pics">
+        <div class="pic-wrapper"
+          ref="picRef">
+          <ul class="pic-list"
+            ref="picListRef">
+            <li class="pic-item"
+              v-for="pic in seller.pics">
               <img :src="pic">
             </li>
           </ul>
@@ -77,7 +86,8 @@
       <div class="info">
         <h1 class="title">商家信息</h1>
         <ul>
-          <li v-for="item in seller.infos" class="item">{{item}}</li>
+          <li v-for="item in seller.infos"
+            class="item">{{item}}</li>
         </ul>
       </div>
     </div>
@@ -95,7 +105,7 @@ export default {
     Star,
     CrossLine
   },
-  data () {
+  data() {
     return {
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
       // 收藏图标样式
@@ -108,7 +118,7 @@ export default {
     }
   },
   watch: {
-    seller () {
+    seller() {
       this.$nextTick(() => {
         this._initScroll()
         this._initPicScroll()
@@ -117,7 +127,7 @@ export default {
   },
   methods: {
     // 初始化页面滚动
-    _initScroll () {
+    _initScroll() {
       if (!this.scroll) {
         this.scroll = new BScroll(this.$refs.sellerRef, {
           click: true
@@ -128,7 +138,7 @@ export default {
     },
     // 初始化图片横向滚动
     // 手动设置横向宽度
-    _initPicScroll () {
+    _initPicScroll() {
       if (this.seller.pics) {
         const picWidth = 120
         const margin = 6
@@ -147,7 +157,7 @@ export default {
       }
     },
     // 收藏
-    toggleFavorites (event) {
+    toggleFavorites(event) {
       // 解决移动端响应两次点击事件的问题
       if (!event._constructed) {
         return
@@ -158,8 +168,8 @@ export default {
   },
   filters: {},
   computed: {},
-  created () {},
-  mounted () {
+  created() { },
+  mounted() {
     // 初始化页面滚动
     // 初始化图片横向滚动
     this.$nextTick(() => {
@@ -167,7 +177,7 @@ export default {
       this._initPicScroll()
     })
   },
-  destroyed () {}
+  destroyed() { }
 }
 </script>
 

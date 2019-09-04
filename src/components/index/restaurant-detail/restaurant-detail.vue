@@ -32,7 +32,7 @@ export default {
   components: {
     SellerHeader
   },
-  data () {
+  data() {
     return {
       // 商家数据
       // 获取不同商家的 id
@@ -50,7 +50,7 @@ export default {
   watch: {},
   methods: {
     // 初始化商家数据
-    _initData () {
+    _initData() {
       // vue-resource
       // this.$http.get('/api/seller').then(res => {
       //   console.log(res)
@@ -73,18 +73,18 @@ export default {
   },
   filters: {},
   computed: {},
-  created () {
+  created() {
     // 初始化商家数据
     this._initData()
   },
-  mounted () {},
-  destroyed () {}
+  mounted() { },
+  destroyed() { }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
+@import "~@/assets/scss/const.scss";
+@import "~@/assets/scss/mixin.scss";
 
 .restaurant-detail {
   .tab {
@@ -94,7 +94,7 @@ export default {
     height: 40px;
     line-height: 40px;
     text-align: center;
-    @include onepx('bottom');
+    @include onepx("bottom");
     .tab-item {
       flex: 1;
       background-color: #fff;
